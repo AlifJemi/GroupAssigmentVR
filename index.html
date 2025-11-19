@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEEDEVERYTHING | Your One-Stop Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ----- GLOBAL STYLES ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #111111;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ----- HEADER ----- */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111111;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #4caf50;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #4caf50;
+        }
+
+        .nav-links a.active {
+            color: #4caf50;
+            font-weight: 600;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-icons i {
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .header-icons i:hover {
+            color: #4caf50;
+        }
+
+        .header-bottom {
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #f5f5f5;
+            border-radius: 20px;
+            padding: 8px 15px;
+            width: 300px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .search-bar i {
+            color: #757575;
+            margin-right: 8px;
+        }
+
+        .promo-banner {
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* ----- HERO SECTION ----- */
+        .hero {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #111111;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #333333;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #111111;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #4caf50;
+            transform: translateY(-2px);
+        }
+
+        /* ----- PRODUCTS SECTION ----- */
+        .products-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 280px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #111111;
+        }
+
+        .product-category {
+            font-size: 14px;
+            color: #757575;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .add-to-cart {
+            flex: 1;
+            background-color: #111111;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #4caf50;
+        }
+
+        .view-details {
+            background-color: transparent;
+            border: 1px solid #e5e5e5;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .view-details:hover {
+            border-color: #111111;
+        }
+
+        /* ----- FOOTER ----- */
+        footer {
+            background-color: #111111;
+            color: #ffffff;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #999999;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffffff;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: #999999;
+            font-size: 18px;
+            transition: color 0.2s;
+        }
+
+        .social-icons a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333333;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #999999;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #999999;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        /* ----- MODAL ----- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #757575;
+        }
+
+        .modal h2 {
+            margin-bottom: 15px;
+            color: #111111;
+        }
+
+        .modal p {
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .header-icons {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 50px 0;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-bar {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="promo-banner">
+            Free shipping on orders over RM100 | Member exclusive products
+        </div>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">NEED<span>EVERYTHING</span></div>
+                <div class="nav-links">
+                    <a href="#" class="active">New & Featured</a>
+                    <a href="#">Men</a>
+                    <a href="#">Women</a>
+                    <a href="#">Kids</a>
+                    <a href="#">Accessories</a>
+                    <a href="#">Sale</a>
+                </div>
+                <div class="header-icons">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search">
+                    </div>
+                    <i class="far fa-heart"></i>
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <div class="nav-links">
+                    <a href="#" class="active">All Products</a>
+                    <a href="#">Electronics</a>
+                    <a href="#">Fashion</a>
+                    <a href="#">Home & Living</a>
+                    <a href="#">Beauty</a>
+                    <a href="#">Sports</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>FIND EVERYTHING YOU NEED</h1>
+            <p>Discover a wide range of products from electronics to fashion, all in one place. Quality guaranteed with fast delivery.</p>
+            <a href="#" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">FEATURED PRODUCTS</h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <iframe src="https://syafiqawardia.sirv.com/export_20251112135038/export_20251112135038.spin" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">PERFUME PARADISE EXCLUSIVE FOR WOMEN (30 ML)</h3>
+                        <div class="product-category">Fragrance</div>
+                        <div class="product-price">RM 40.00</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Bag</button>
+                            <button class="view-details" onclick="openModal(1)">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <iframe src="https://ainfarishah.sirv.com/583619935.spin" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Kit Beez KF-3 Digital Camera</h3>
+                        <div class="product-category">Electronics</div>
+                        <div class="product-price">RM 199.00</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Bag</button>
+                            <button class="view-details" onclick="openModal(2)">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <iframe src="https://kemesahan2003.sirv.com/583619935.spin" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">SZINDORE AMAYA (15ml)</h3>
+                        <div class="product-category">Fragrance</div>
+                        <div class="product-price">RM 20.00</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Bag</button>
+                            <button class="view-details" onclick="openModal(3)">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                      <iframe src="https://kemesahan2003.sirv.com/VR2/VR2.spin" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Baseus Lipow 20000mah Powerbank</h3>
+                        <div class="product-category">Electronics</div>
+                        <div class="product-price">RM 79.00</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Bag</button>
+                            <button class="view-details" onclick="openModal(4)">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                       <iframe src="https://kemesahan2003.sirv.com/VR/%40/%40.spin" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Xiaomi 212W Hypercharge Power Bank 24500</h3>
+                        <div class="product-category">Electronics</div>
+                        <div class="product-price">RM 109.00</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Bag</button>
+                            <button class="view-details" onclick="openModal(5)">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <iframe src="https://kemesahan2003.sirv.com/VR/VR.spin" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Xiaomi 165W Power Bank 10000 (Integrated Cable）</h3>
+                        <div class="product-category">Electronics</div>
+                        <div class="product-price">RM 169.00</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Bag</button>
+                            <button class="view-details" onclick="openModal(6)">Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Products</h3>
